@@ -35,7 +35,7 @@ class Inventario {
         let lista = '';
 
         while (aux != null) {
-            lista += aux.getInfo() + ' ';
+            lista += ProductRow(aux);
             aux = aux.next;
         }
         return lista;
@@ -46,7 +46,7 @@ class Inventario {
         let lista = '';
 
         while (aux != null) {
-            lista = aux.getInfo() + ' ' + lista;
+            lista = ProductRow(aux) + lista;
             aux = aux.next;
         }
         return lista;

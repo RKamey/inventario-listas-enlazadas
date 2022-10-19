@@ -29,7 +29,7 @@ btnAgregar.addEventListener('click', () => {
     
    //agrega y muestra
     let producto = new Producto(codigo, nombre, cantidad, precio);
-    inventario.agregarProducto(producto);
+    inventario.agregar(producto);
     historial.innerHTML += `<p>Se agrego el producto</p>`;
     formAgregar.reset()
 });
@@ -39,7 +39,7 @@ formBuscar.addEventListener('submit', (e) => {
     e.preventDefault()
 
     let codigo = document.getElementById('codigo-b').value;
-    let product = inventario.buscarProducto(codigo);
+    let product = inventario.buscar(codigo);
 
     if (!product) return alert('Producto no encontrado');
 
@@ -55,10 +55,10 @@ formEliminar.addEventListener('submit', (e) => {
 
     let codigo = document.getElementById('codigo-e').value;
 
-    if (codigo === '' || inventario.buscarProducto(codigo) === null) 
+    if (codigo === '' || inventario.buscar(codigo) === null) 
         return alert('Todos los campos son obligatorios');
     
-    inventario.eliminarProducto(codigo);
+    inventario.eliminar(codigo);
     historial.innerHTML += `<p>Se elimino el producto</p>`;
     formEliminar.reset();
 })
@@ -67,12 +67,12 @@ formEliminar.addEventListener('submit', (e) => {
 btnListar.addEventListener('click', (e) => {
     e.preventDefault();
 
-    let lista = inventario.listarProductos();
+    let lista = inventario.listar();
     if (!lista) return alert('No hay productos en el inventario');
         
     containerTabla.innerHTML = createTable();
     const bodyTableProducts = document.getElementById('tabla-productos');
-    bodyTableProducts.innerHTML = inventario.listarProductos();
+    bodyTableProducts.innerHTML = inventario.listar();
     historial.innerHTML += `<p>Se han listado los productos</p>`;
 });
 
@@ -80,7 +80,7 @@ btnListar.addEventListener('click', (e) => {
 const btnListarInv = document.getElementById('btn-listar-inv');
 btnListarInv.addEventListener('click', () => {
     let listaInv = inventario.listarInverso();
-    if (!listaInv) return alert('No hya productos en el inventario');
+    if (!listaInv) return alert('No hay productos en el inventario');
 
     containerTabla.innerHTML = createTable()
     const bodyTableProducts = document.getElementById('tabla-productos');
