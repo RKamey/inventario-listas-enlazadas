@@ -26,12 +26,41 @@ btnAgregar.addEventListener('click', () => {
 
     //validar
     Validar(codigo, nombre, cantidad, precio);
+
+    // Caso switch para insertar en posicion
+    let posicion = document.getElementById('inputPosicion').value;
+    let switchInsertar = document.getElementById('switchInsertar')
+
+    if (switchInsertar.checked == true) { 
+        if (posicion === '') {
+            return false;
+        }
+        inventario.insertar(posicion, new Producto(codigo, nombre, cantidad, precio));
+        historial.innerHTML += `<p>Se inserto el producto ${nombre} en la posicion ${posicion}</p>`;
+    } else {
+        inventario.agregar(new Producto(codigo, nombre, cantidad, precio));
+        historial.innerHTML += `<p>Se agrego el producto ${nombre}</p>`;
+    }
+    formAgregar.reset();
+});
     
    //agrega y muestra
-    let producto = new Producto(codigo, nombre, cantidad, precio);
-    inventario.agregar(producto);
-    historial.innerHTML += `<p>Se agrego el producto</p>`;
-    formAgregar.reset()
+    // let producto = new Producto(codigo, nombre, cantidad, precio);
+    // inventario.agregar(producto);
+    // historial.innerHTML += `<p>Se agrego el producto</p>`;
+    // formAgregar.reset()
+
+
+// Switch Insertar en posición
+document.getElementById("switchInsertar").addEventListener("click", () => {
+    let switchInsertar = document.getElementById("switchInsertar");
+    let posicionProducto = document.getElementById("inputPosicion");
+    posicionProducto.disabled = true;
+    posicionProducto.value = "";
+  
+    if (switchInsertar.checked == true) {
+      posicionProducto.disabled = false;
+    }
 });
 
 // Buscar Producto
@@ -59,7 +88,7 @@ formEliminar.addEventListener('submit', (e) => {
         return alert('Todos los campos son obligatorios');
     
     inventario.eliminar(codigo);
-    historial.innerHTML += `<p>Se elimino el producto</p>`;
+    historial.innerHTML += `<p>Se ha eliminado un producto</p>`;
     formEliminar.reset();
 })
 
