@@ -22,7 +22,7 @@
             <div class="py-2">
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="codigo-p" placeholder="Codigo del Producto">
-                <label for="codigo-p">Codigo del Producto</label>
+                <label for="codigo-p">Código del Producto</label>
               </div>
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="nombre-p" placeholder="Nombre del Producto">
@@ -36,9 +36,20 @@
                 <input type="number" class="form-control" id="precio-p" placeholder="Precio">
                 <label for="precio-p">Precio</label>
               </div>
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="inputPosicion" placeholder="Posicion" disabled>
+                <label for="precio-p">Posición</label>
+              </div>
             </div>
 
-            <button type="button" class="btn btn-success" id="btn-agregar">Agregar</button>
+            <!-- Switch para Insertar en posición -->
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="switchInsertar">
+              <label class="form-check-label" for="switchInsertar">Insertar en posición</label>
+            </div>
+            <br>
+            <!-- Botón Agregar -->
+            <button type="button" class="btn btn-success btn-block" id="btn-agregar">Agregar</button>
           </form>
         </div>
 
