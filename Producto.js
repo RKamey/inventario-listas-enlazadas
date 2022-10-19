@@ -4,22 +4,11 @@ class Producto {
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.next = null;
     }
 
     getCodigo() {
         return this.codigo;
-    }
-
-    getNombre() {
-        return this.nombre;
-    }
-
-    getCantidad() {
-        return this.cantidad;
-    }
-
-    getPrecio() {
-        return this.precio;
     }
 
     getInfo() {
