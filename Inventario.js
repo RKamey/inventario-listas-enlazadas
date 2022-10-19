@@ -1,60 +1,40 @@
 class Inventario {
     constructor() {
-        this.productos = [];
+        this.primero = null;
     }
 
-    agregarProducto(producto) {
-        this.productos.push(producto);
-    }
+    agregar(producto) {
+        let aux = this.primero;
 
-    eliminarProducto(codigo) {
-        let producto = this.buscarProducto(codigo);
-        if (producto) {
-            this.eliminar(codigo);
-            alert('Producto eliminado');
+        if (aux == null) {
+            this.primero = producto;
         } else {
-            alert('Producto no encontrado');
+            while (aux.next != null) {
+                aux = aux.next;
+            }
+            aux.next = producto;
         }
-
     }
 
-    buscarProducto(codigo) {
-        for (let i = 0; i < this.productos.length; i++) {
-            if (this.productos[i].codigo === codigo) {
-                return this.productos[i];
+    buscar(codigo) {
+        let aux = this.primero;
+
+        while (aux != null) {
+            if (aux.codigo == codigo) {
+                return aux;
+            } else {
+                aux = aux.next;
             }
         }
+        return null;
     }
 
-    eliminar(codigo) {
-        for (let i = 0; i < this.productos.length; i++) {
-            if (codigo === this.productos[i].codigo) {
-                for (let j = i; j < this.productos.length - 1; j++) {
-                    this.productos[j] = this.productos[j + 1];
-                }
+    listar() {
+        let aux = this.primero;
 
-                this.productos.pop();
-            }
-
+        while (aux != null) {
+            console.log(aux.getInfo());
+            aux = aux.next;
         }
-    }
-
-    listarProductos() {
-        let lista = '';
-        for (let i = 0; i < this.productos.length; i++) {
-            lista += ProductRow(this.productos[i])
-        }
-
-        return lista;
-    }
-
-    listarInverso() {
-        let listaInv = '';
-
-        for (let i = this.productos.length - 1; i >= 0; i--) {
-            listaInv += ProductRow(this.productos[i]); 
-        }
-
-        return listaInv;
     }
 }
